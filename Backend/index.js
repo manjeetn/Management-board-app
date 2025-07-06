@@ -1,21 +1,23 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const connectDB =  require("./config/mgconnect")
 
- const PORT = process.env.PORT || 3001;
+const  express = require( 'express')
+const mongoose = require('mongoose')
+const dotenv = require( 'dotenv')
+const cors = require('cors')
+const authRoutes = require( './routes/route.js')
+const connectMongoDB = require('./mongo/Mgconnect.js')
 
- const app = express();
- dotenv.config();
-connectDB();
- 
+dotenv.config();
+const app = express();
+
+
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use("/api/auth", require("./routes/user"));
 
-app.get("/", (req, res) => res.send("API Running"));
+app.use('/api/auth', authRoutes);
 
-
- app.listen(PORT, () => console.log( `Server is started at PORT:${PORT}`));
+  connectMongoDB().then(() => {
+  app.listen(3001, () => {
+    console.log('Server running on port 3001');
+  });
+});
