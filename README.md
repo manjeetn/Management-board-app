@@ -22,11 +22,28 @@ THIS READme COVER MY WORK PROGRESS
  TESTING:using Postman
 
 
- Day 2 – Completed work
+ Day 2 – COMPLETED WORK
 
  Created React Frontend with Vite.
  Added axios, react-router-dom.
  Created Signup.jsx, Login.jsx, and Dashboard.jsx.
  Connected frontend to backend API using axios.
  Saved JWT token on login in localStorage.
+
+
+ DAY 3 - COMPLETED WORK
+
+ Setup Task model with title, description, status, priority, assignedUser
+ Implement CRUD routes (GET, POST, PATCH, DELETE)
+ Display Dashboard UI 
+
+ INFO
+ Backend Task model and routes using Express and MongoDB
+ GET, POST, PATCH, and DELETE routes for tasks
+ Task dashboard UI with 3-column layout in React
+
+
+ TEST
+ Postman to test all "/api/tasks" routes
+
 
