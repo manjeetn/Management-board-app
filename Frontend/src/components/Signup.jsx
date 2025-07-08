@@ -25,11 +25,16 @@ setMessage(` ${errorMsg}`);
 
   return (
     <form onSubmit={handleRegister}>
-      <h2>Register</h2>
+      <h2 style={{color:"white"}}>Sign UP</h2>
+
+            <div style={{ display: 'flex', height:'30px', gap: '10px', marginBottom: '15px' }}>
+
       <input type="text" placeholder="fullName" value={fullName} onChange={(e) => setfullName(e.target.value)} required />
       <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
       <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      <button type="submit">SIGNUP</button>
+    
+    </div> 
+     <button type="submit">SIGNUP</button>
     </form>
   );
 }

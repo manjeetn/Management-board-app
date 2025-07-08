@@ -23,8 +23,11 @@ router.get('/', async (req,res)=>{
         res.status(500).json({error:error.message}); }});
 router.patch("/:id", async (req, res) => {
   try {
-    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,});
+   const task = await Task.findByIdAndUpdate(
+  req.params.id,
+  req.body,
+  { new: true }
+).populate("assignedUser", "fullName email");
     res.json(task);
   } catch (error) {
     res.status(400).json({ error: error.message });

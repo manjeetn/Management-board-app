@@ -27,9 +27,12 @@ setMessage(`${errorMsg}`);
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
+     <h2 style={{ color: "white" }}>Login</h2>
+
+      <div style={{ display: 'flex', height:'30px', gap: '10px', marginBottom: '15px' }}>
       <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
       <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      </div>
       <button type="submit">Login</button>
     </form>
   );

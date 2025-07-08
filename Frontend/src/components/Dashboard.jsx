@@ -1,83 +1,87 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import TaskForm from "./dashboard/TaskForm";
+import TaskBoard from "./dashboard/TaskBoard";
+import "../App.css";
 
- import React, { useEffect, useState } from "react";
- import axios from "axios"; 
- 
- function Dashboard() {
-  
-   const [tasks, setTasks] = useState([]);
+function Dashboard() {
+  const [tasks, setTasks] = useState([]);
+  const [editingTaskId, setEditingTaskId] = useState(null);
+  const [editedTask, setEditedTask] = useState({ title: "", description: "" });
+  const [users, setUsers] = useState([]);
+  const [newTask, setNewTask] = useState({
+    title: "",
+    description: "",
+    status: "Todo",
+    priority: "Low",
+    assignedUser: ""
+  });
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/api/tasks")
+    axios.get("http://localhost:3001/api/tasks")
       .then((res) => setTasks(res.data))
-      .catch((err) => console.error("Error fetching tasks:", err));
+      .catch(console.error);
+
+    axios.get("http://localhost:3001/api/auth/users")
+      .then((res) => setUsers(res.data))
+      .catch(console.error);
   }, []);
 
-  const groupedTasks = {
-    Todo: [],
-    "In Progress": [],
-    Done: [],
+  const groupedTasks = { Todo: [], "In Progress": [], Done: [] };
+  tasks.forEach(task => groupedTasks[task.status]?.push(task));
+
+  const handleDelete = async (taskId) => {
+    await axios.delete(`http://localhost:3001/api/tasks/${taskId}`);
+    setTasks(prev => prev.filter(task => task._id !== taskId));
   };
 
-  tasks.forEach((task) => {
-    groupedTasks[task.status]?.push(task);
-  });
+  const handleEdit = (task) => {
+    setEditingTaskId(task._id);
+    setEditedTask({ title: task.title, description: task.description });
+  };
+
+  const handleCancel = () => {
+    setEditingTaskId(null);
+    setEditedTask({ title: "", description: "" });
+  };
+
+  const handleSave = async (taskId) => {
+    const res = await axios.patch(`http://localhost:3001/api/tasks/${taskId}`, editedTask);
+    setTasks(prev => prev.map(task => task._id === taskId ? res.data : task));
+    setEditingTaskId(null);
+    setEditedTask({ title: "", description: "" });
+  };
+
+  const handleAssign = async (taskId, userId) => {
+    const res = await axios.patch(`http://localhost:3001/api/tasks/${taskId}`, { assignedUser: userId || null });
+    setTasks(prev => prev.map(task => task._id === taskId ? res.data : task));
+  };
+
+  const handleCreateTask = async (e) => {
+    e.preventDefault();
+    const res = await axios.post("http://localhost:3001/api/tasks", newTask);
+    setTasks(prev => [...prev, res.data]);
+    setNewTask({ title: "", description: "", status: "Todo", priority: "Low", assignedUser: "" });
+  };
 
   return (
     <div>
-      <h1>Welcome to Dashboard</h1>
-
-      <div style={styles.boardContainer}>
-        {["Todo", "In Progress", "Done"].map((status) => (
-          <div key={status} style={styles.column}>
-            <h2 style={styles.columnTitle}>{status}</h2>
-            {groupedTasks[status].map((task) => (
-              <div key={task._id} style={styles.taskCard}>
-                <h3>{task.title}</h3>
-                <p>{task.description}</p>
-                <small>Priority: {task.priority}</small>
-                {task.assignedUser && (
-                  <div>
-                    <small>Assigned to: {task.assignedUser.name}</small>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+      <h1 className="dashboard-heading">Welcome to Dashboard</h1>
+      <TaskForm newTask={newTask} setNewTask={setNewTask} users={users} handleCreateTask={handleCreateTask} />
+      <TaskBoard
+        groupedTasks={groupedTasks}
+        users={users}
+        editingTaskId={editingTaskId}
+        editedTask={editedTask}
+        setEditedTask={setEditedTask}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        handleCancel={handleCancel}
+        handleSave={handleSave}
+        handleAssign={handleAssign}
+      />
     </div>
   );
-};
+}
 
-const styles = {
-  boardContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: "20px",
-    gap: "20px",
-  },
-  column: {
-    flex: "1",
-    padding: "10px",
-    backgroundColor: "#f1f1f1",
-    borderRadius: "5px",
-    height: "80vh",
-    overflowY: "auto",
-  },
-  columnTitle: {
-    textAlign: "center",
-    fontWeight: "bold",
-    marginBottom: "10px",
-  },
-  taskCard: {
-    backgroundColor: "#fff",
-    padding: "10px",
-    borderRadius: "5px",
-    marginBottom: "10px",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-  },
-};
-
-export default  Dashboard;
-
+export default Dashboard;
