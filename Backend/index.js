@@ -11,7 +11,7 @@ const taskRoutes = require("./routes/Task.js");
 dotenv.config();
 const app = express();
 
-const PORT = process.env.PORT || 3003;
+
 app.use(cors());
 app.use(express.json());
 
@@ -20,7 +20,7 @@ app.use('/api/auth', authRoutes);
 app.use("/api/tasks", taskRoutes);
 
   connectMongoDB().then(() => {
-  app.listen(PORT, () => {
+  app.listen(3001, () => {
     console.log('Server running on port 3001');
   });
 });

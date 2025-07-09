@@ -66,7 +66,7 @@ function Dashboard() {
 
   return (
     <div>
-      <h1 className="dashboard-heading">Welcome to Dashboard</h1>
+      <h1 className="dashboard-heading">Kanban Dashboard</h1>
       <TaskForm newTask={newTask} setNewTask={setNewTask} users={users} handleCreateTask={handleCreateTask} />
       <TaskBoard
         groupedTasks={groupedTasks}
