@@ -1,6 +1,6 @@
 COLLABORATIVE TO-DO BOARD
 
-A task management board  built with the MERN stack,where users can make accounts,manage tasks and see   real-time sync.
+A real-time collaborative task management board built   using the MERN stack. Where User can make account by   SignUP/login. and can also  Add,delete, edit and manage   tasks.Designed for users to track work progress across   columns like Todo, In Progress, and Done.  
 
 
 THIS READme COVER MY WORK PROGRESS
@@ -60,3 +60,23 @@ Task form expands on clicking title or description.
 Add and Cancel buttons aligned horizontally.  
 Improved spacing and placeholder styling.  
 Task creation form styled like a card.  
+
+
+TECH STACK USED
+
+Backend:
+        Node.js  
+        Express.js MongoDB (Mongoose)  
+        JWT for authentication  
+        bcryptjs for password hashing  
+
+FRONTEND       
+         React.js (with Vite)  
+         Axios  
+         React Router DOM  
+
+TOOLS  
+         Postman (API testing)  
+         Git & GitHub (Version control)  
+
+
