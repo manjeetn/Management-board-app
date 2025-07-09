@@ -36,8 +36,8 @@ body{
 }
 
 select {
-  background-color: rgba(234, 234, 234, 0.1);           /* background of select */
-  color: black;                      /* default text color */
+  background-color: rgba(234, 234, 234, 0.1);           
+  color: black;                     
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;

@@ -3,7 +3,7 @@ import React, {useState} from "react";
 
 const TaskForm = ({ newTask, setNewTask, users, handleCreateTask }) => {
   
-  const [expanded, setExpanded] = useState(false); // 🔹 Controls if the full form should be shown
+  const [expanded, setExpanded] = useState(false); 
 
   const handleExpand = () => {
     setExpanded(true); 
