@@ -3,7 +3,7 @@ COLLABORATIVE TO-DO BOARD
 A real-time collaborative task management board built   using the MERN stack. Where User can make account by   SignUP/login. and can also  Add,delete, edit and manage   tasks.Designed for users to track work progress across   columns like Todo, In Progress, and Done.  
 
 
-THIS READme COVER MY WORK PROGRESS
+THIS README COVER MY WORK PROGRESS
 
  Day 1: Completed Work
 
@@ -80,3 +80,20 @@ TOOLS
          Git & GitHub (Version control)  
 
 
+
+
+SCREEN RECORDING VEDIO(NO AUDIO)  
+
+link: https://drive.google.com/file/d/1kMRnnL8UgL1GjK5iInGds992K2iAIWBo/view?usp=sharing  
+
+MESSAGE:
+
+"I tried several times, but I wasn’t able to record audio along with the screen recording.  
+ So I am sharing the screen recording without the audio,  
+ and I have included everything about the project in a PDF file.   
+ I apologize for this inconvenience."  
+
+
+ PDF FILE:
+
+ link:https://drive.google.com/file/d/1NIWxQmlLb_hBJ3FkvRNy0vYeXrMdoglD/view?usp=sharing
